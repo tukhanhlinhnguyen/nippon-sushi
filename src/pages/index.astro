@@ -1,11 +1,209 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const menuCategories = [
+  {
+    title: "Hors-d'oeuvre (2 pièces)",
+    items: ["H1 Pinces de crabes farcies", "H2 Samoussa boeuf", "H3 Nems crevettes", "H4 Nems poulet ou légumes", "H5 Gyoza poulet ou légumes", "H6 Crevettes tempura"]
+  },
+  {
+    title: "Salades",
+    items: ["SA1 Chou", "SA2 Chou saumon", "SA3 Nippon (boeuf, avocat, oignons frits)", "SA4 Viet (poulet pané, oignons frits)"]
+  },
+  {
+    title: "Brochettes (2 pièces)",
+    items: ["B1 Crevettes", "B2 Poulet", "B3 Boeuf fromage"]
+  },
+  {
+    title: "Chirashi (Avec Riz vinaigré & sauce)",
+    items: ["CH1 Saumon pané", "CH2 Saumon", "CH3 Poulet pané", "CH4 Nippon (concombre, avocat, saumon, menthe)"]
+  },
+  {
+    title: "Wok",
+    items: ["W1 Boeuf", "W2 Crevettes", "W3 Poulet", "W4 Légumes"]
+  },
+  {
+    title: "Nouilles",
+    items: ["N1 Boeuf", "N2 Crevettes", "N3 Poulet", "N4 Légumes"]
+  },
+  {
+    title: "Sushi (2 pièces)",
+    items: ["S1 Crevettes", "S2 Saumon cheese", "S3 Saumon ciboulette", "S4 Saumon"]
+  },
+  {
+    title: "Maki (6 pièces)",
+    items: ["M1 Maki concombre cheese", "M2 Maki avocat cheese", "M3 Maki saumon", "M4 Maki tempura", "M5 Maki tempura oignons frits", "M6 Maki thon mayo"]
+  },
+  {
+    title: "Snow (6 pièces)",
+    items: ["SN1 Snow poulet pané", "SN2 Snow saumon cheese", "SN3 Snow thon mayo"]
+  },
+  {
+    title: "California",
+    items: ["C1 Cali concombre cheese", "C2 Cali avocat cheese", "C3 Cali poulet pané parmesan", "C4 Cali surimi cheese", "C5 Cali tempura", "C6 Cali thon concombre oignons frits", "C7 Cali saumon avocat", "C8 Cali saumon cheese ciboulette", "C9 Cali saumon cheese menthe", "C10 Cali thon mayo avocat", "C11 Cali sur avocat masago"]
+  },
+  {
+    title: "Avec supplément (7€)",
+    items: ["AS1 Dragon avocat saumon", "AS2 Dragon avocat tempura saumon"]
+  }
+];
+
+const plateaux = [
+  { code: "PY", name: "Mix yakitori (brochettes)", desc: "Crevettes - Boeuf fromage - Poulet pané" },
+  { code: "PF", name: "Mix friture", desc: "Pinces de crabe farcies - Nems poulet / crevettes - Gyoza poulet légumes" },
+  { code: "PS1", name: "Mix sushi saumon", desc: "Sushi saumon cheese - Sushi saumon ciboulette - Sushi crevettes" },
+  { code: "PS2", name: "Maki concombre cheese", desc: "Snow saumon cheese - Cali avocat thon mayo - Cali saumon avocat" },
+  { code: "PS3", name: "Cali concombre cheese", desc: "Cali avocat cheese - Maki avocat cheese - Maki concombre cheese" },
+  { code: "PS4", name: "Cali saumon avocat", desc: "Sushi saumon" },
+  { code: "PS5", name: "Maki saumon cheese", desc: "Cali saumon cheese ciboulette - Cali thon mayo oignons frits - Cali tempura" },
+  { code: "PS6", name: "Cali tempura", desc: "Cali poulet pané parmesan - Maki tempura oignons frits - Maki thon mayo" },
+  { code: "PS7", name: "Snow poulet pané", desc: "Snow saumon cheese - Snow thon mayo" },
+  { code: "PS8", name: "Sushi saumon & crevettes", desc: "Cali saumon cheese ciboulette - Cali saumon avocat" },
+  { code: "PS9", name: "Maki saumon cheese", desc: "Cali saumon avocat - Cali avocat thon mayo - Cali concombre thon mayo oignons frits" },
+  { code: "PS10", name: "Sushi saumon & crevettes", desc: "Cali avocat surimi masago - Snow saumon cheese menthe - Maki saumon" }
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Nippon Sushi Aubagne - Accueil">
+  <!-- HERO SECTION (Minimaliste et Lumineuse) -->
+  <section class="relative pt-48 pb-32 px-6 flex items-center justify-center min-h-[85vh] text-center bg-[#fafafa]">
+    <div class="relative z-10 max-w-2xl mx-auto">
+      <h2 class="text-sm font-bold tracking-widest text-[#cf2929] uppercase mb-4">Restaurant Japonais</h2>
+      <h1 class="font-serif text-5xl md:text-6xl text-stone-900 font-normal mb-6 leading-tight">
+        Japanese Cuisines <br class="hidden sm:inline"/>& Sushi Bar
+      </h1>
+      <p class="text-sm md:text-base text-stone-500 mb-12 leading-relaxed max-w-lg mx-auto font-light">
+        Découvrez l'essence de la cuisine japonaise au Nippon Sushi Aubagne. Ingrédients frais, créativité de nos chefs et atmosphère raffinée.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center text-xs tracking-widest uppercase font-bold">
+        <a href="#menu" class="border border-stone-900 bg-stone-900 text-white px-8 py-4 w-64 hover:bg-[#cf2929] hover:border-[#cf2929] transition duration-300">
+          Voir la carte
+        </a>
+        <a href="#plateaux" class="border border-stone-300 text-stone-700 px-8 py-4 w-64 hover:bg-stone-50 hover:text-stone-900 transition duration-300">
+          Les Plateaux Mix
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMO BANNER & FORMULLES -->
+  <section class="bg-white border-t border-b border-stone-100 py-16 px-6 text-center">
+    <div class="max-w-3xl mx-auto">
+      <h3 class="font-serif text-2xl md:text-3xl text-stone-900 mb-4 font-normal">Buffet Japonais à Volonté</h3>
+      <p class="text-sm font-semibold tracking-wider text-[#cf2929] uppercase mb-2">Formule à volonté : 24,90 € par personne</p>
+      <p class="text-xs text-stone-400 mb-6">(-10 ans : 12,00 € | -3 ans : Offert)</p>
+      
+      <div class="w-12 h-[1px] bg-stone-300 mx-auto mb-6"></div>
+      
+      <p class="text-sm text-stone-600 font-medium max-w-xl mx-auto leading-relaxed mb-4">
+        Pour tout achat à emporter : <span class="text-stone-900 font-bold">1 acheté = 1 offert !</span>
+      </p>
+      <p class="text-xs max-w-xl mx-auto text-stone-400 italic">
+        * Note d'été : À partir du 1er août, notre restaurant sera fermé le midi pendant les mois d'août et septembre.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECTION : LE MENU (Format 2 Colonnes Propres) -->
+  <section id="menu" class="py-24 px-6 bg-white text-stone-900">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-20">
+        <h2 class="font-serif text-3xl md:text-4xl font-normal tracking-wide text-stone-900 mb-2">La Carte du Restaurant</h2>
+        <p class="text-xs uppercase tracking-widest text-stone-400">Fait minute avec des produits frais</p>
+      </div>
+      
+      <!-- Grille à 2 colonnes comme sur la maquette -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+        {menuCategories.map((category) => (
+          <div class="break-inside-avoid">
+            <h3 class="font-serif text-lg text-stone-900 border-b border-stone-200 pb-2 mb-4 font-medium">
+              {category.title}
+            </h3>
+            <ul class="space-y-3">
+              {category.items.map((item) => {
+                // Sépare le code (ex: H1, SA3) du reste du texte pour le styliser en rouge
+				const firstSpaceIndex = item.indexOf(' ');
+                const code = firstSpaceIndex !== -1 ? item.substring(0, firstSpaceIndex) : '';
+                const name = firstSpaceIndex !== -1 ? item.substring(firstSpaceIndex + 1) : item;
+                
+                return (
+                  <li class="text-xs text-stone-600 flex items-start leading-relaxed">
+                    {code && <span class="text-[#cf2929] font-bold min-w-[40px] shrink-0 font-mono text-[11px] uppercase tracking-wider">{code}</span>}
+                    <span class="text-stone-700 font-light">{name}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION : LES PLATEAUX -->
+  <section id="plateaux" class="py-24 px-6 bg-[#fafafa] border-t border-stone-100 text-stone-900">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="font-serif text-3xl md:text-4xl font-normal tracking-wide text-stone-900 mb-2">Nos Plateaux Mix</h2>
+        <p class="text-xs uppercase tracking-widest text-stone-400">Sélections et assortiments du chef</p>
+      </div>
+      
+      
+	  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+		{plateaux.map((plateau) => {
+		  return (
+			<div class="bg-[#1F2030] p-6 rounded-lg border border-slate-800 flex flex-col justify-between">
+			  <div>
+				<div class="flex justify-between items-start mb-2">
+				  <h3 class="text-lg font-bold text-white">
+					{plateau.name}
+				  </h3>
+	  
+				  <span class="bg-[#cf2929] text-white text-xs px-2 py-1 font-bold rounded uppercase">
+					{plateau.code}
+				  </span>
+				</div>
+	  
+				<p class="text-slate-400 text-sm italic">
+				  {plateau.desc}
+				</p>
+			  </div>
+			</div>
+		  );
+		})}
+	  </div>
+	</div>
+  </section>
+
+  <style>
+	/* Hero Japanese background pattern from screenshot */
+	section:first-of-type {
+	  background-image: radial-gradient(#d1d1d1 0.75px, transparent 0.75px);
+	  background-size: 24px 24px;
+	}
+  
+	/* Plateaux Section Styles */
+	.plateau-card {
+	  border-bottom: 1px solid #e7e5e4;
+	  padding-bottom: 0.5rem;
+	  margin-bottom: 0.75rem;
+	  display: flex;
+	  justify-content: space-between;
+	  align-items: baseline;
+	}
+  
+	.plateau-code {
+	  color: #cf2929;
+	  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+	  font-weight: 700;
+	  font-size: 0.75rem;
+	}
+  
+	.plateau-desc {
+	  color: #525252;
+	  font-size: 0.75rem;
+	  font-weight: 300;
+	  line-height: 1.625;
+	}
+  </style>
 </Layout>

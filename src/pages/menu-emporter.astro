@@ -1,0 +1,288 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// --- DATA: PLATEAUX & FORMULES ---
+const plateaux = [
+  { code: "PY", name: "Mix yakitory | 6 pièces", price: "9,90€", desc: "Crevettes (x2), Bœuf fromage (x2), Poulet pané (x2)" },
+  { code: "PF", name: "Mix fritures | 8 pièces", price: "11,90€", desc: "Pinces de crabe farcis (x2), Nems poulet & Nems crevettes (x4), Gyoza poulet légumes (x2)" },
+  { code: "PS1", name: "Mix sushi | 12 pièces", price: "20,30€", desc: "Sushi saumon cheese (x4), Sushi saumon ciboulette (x4), Sushi crevettes (x4)" },
+  { code: "PS2", name: "24 pièces", price: "24,90€", desc: "Maki concombre cheese (x6), Snow saumon cheese (x6), California avocat thon mayo (x6), California saumon avocat (x6)" },
+  { code: "PS3", name: "24 pièces", price: "22,70€", desc: "California concombre cheese (x6), California avocat cheese (x6), Maki avocat cheese (x6), Maki concombre cheese (x6)" },
+  { code: "PS4", name: "20 pièces", price: "27,50€", desc: "California saumon avocat (x2), Sushi saumon (x8)" },
+  { code: "PS5", name: "26 pièces", price: "23,90€", desc: "Maki saumon cheese (x6), California saumon cheese ciboulette (x6), Calfornia thon mayo oignons frits (x6), California tempura (x6)" },
+  { code: "PS6", name: "24 pièces", price: "23,90€", desc: "California tempura (x6), California poulet pané parmesan (x6), Maki tempura oignons frits (x6), Maki thon mayo (x6)" },
+  { code: "PS7", name: "18 pièces", price: "20,30€", desc: "Snow poulet pané (x6), Snow saumon cheese (x6), Snow thon mayo (x6)" },
+  { code: "PS8", name: "20 pièces", price: "27,50€", desc: "Sushi mix saumon (x6) & crevettes (x2), California saumon cheese ciboulette (x6), California saumon avocat (x6)" },
+  { code: "PS9", name: "24 pièces", price: "27,50€", desc: "Maki saumon cheese (x6), California saumon avocat (x6), California avocat thon mayo (x6), California concombre thon mayo oignons frits (x6)" },
+  { code: "PS10", name: "22 pièces", price: "27,50€", desc: "Sushi mix saumon & crevettes (x4), California avocat surimi masago (x6), Snow saumon cheese menthe (x6), Maki saumon (x6)" }
+];
+
+const formulesClassiques = [
+  { name: "Formule 1", items: "40 pièces", price: "42,90€", desc: "PY (6 pièces) + PF (8 pièces) + PS5 (26 pièces) + 2 canettes 33cl au choix" },
+  { name: "Formule 2", items: "66 pièces", price: "49,90€", desc: "2 x PS5 (52 pièces) + PY (16 pièces) + Sushi saumon (8 pièces) + 2 canettes 33cl au choix" }
+];
+
+const formulesAcheteOffert = [
+  { name: "RN Royal Nippon", items: "100 pièces", price: "59,90€", desc: "2x PS5 (52 pièces) + PS4 (20 pièces) + 2x PY (12 pièces) + 2x PF (16 pièces)" },
+  { name: "RS Royal Sushis", items: "104 pièces", price: "54,90€", desc: "2x PS2 (48 pièces) + 2x PS5 (52 pièces) + Sushi saumon (8 pièces)" },
+  { name: "PN Plateau Nippon", items: "60 pièces", price: "39,90€", desc: "2x PS5 (52 pièces) + Sushi saumon (8 pièces)" }
+];
+
+// --- DATA: A LA CARTE ---
+const aLaCarte = [
+  {
+    category: "Hors d'oeuvres",
+    pricing: "2 pièces: 3,60€ | 6 pièces: 9,50€ | 8 pièces: 11,90€",
+    items: ["H1 Pinces de crabes farcies", "H2 Samoussa boeuf", "H3 Nems crevettes", "H4 Nems poulet ou légumes", "H5 Gyoza poulet ou légumes", "H6 Crevettes tempura"]
+  },
+  {
+    category: "Brochettes",
+    pricing: "2 pièces: 3,60€ | 6 pièces: 9,50€ | 8 pièces: 11,90€",
+    note: "Avec riz vinaigré japonais et sauce Yakitori",
+    items: ["B1 Crevettes", "B2 Poulet", "B3 Boeuf fromage"]
+  },
+  {
+    category: "Sushi",
+    pricing: "2 pièces: 3,60€ | 6 pièces: 9,50€ | 8 pièces: 11,90€",
+    items: ["S1 Crevettes", "S2 Saumon cheese", "S3 Saumon ciboulette", "S4 Saumon"]
+  }
+];
+
+const specialites = [
+  {
+    category: "Salades",
+    items: [
+      { name: "SA1 Chou", price: "3,60€", desc: "(choux, oignons, sauce salade sésame)" },
+      { name: "SA2 Chou saumon", price: "6,00€", desc: "(choux, oignons, sauce sésame, saumon)" },
+      { name: "SA3 Nippon", price: "6,00€", desc: "(boeuf, avocat, carotte, oignons frits, sauce sésame)" },
+      { name: "SA4 Viet", price: "6,00€", desc: "(poulet pané, carotte, oignons frits, sauce sésame)" },
+      { name: "SA5 Bobun nippon", price: "11,90€", desc: "(salade, carotte, soja, concombre, menthe, pâte de riz, boeuf sauté, nem poulet)" }
+    ]
+  },
+  {
+    category: "Chirashi",
+    note: "Avec riz vinaigré japonais et sauce Teriyaki",
+    items: [
+      { name: "CH1 Saumon pané", price: "10,70€" },
+      { name: "CH2 Saumon", price: "10,70€" },
+      { name: "CH3 Poulet pané", price: "10,70€" },
+      { name: "CH4 Nippon", price: "11,90€", desc: "(concombre, avocat, saumon, menthe)" }
+    ]
+  },
+  {
+    category: "Wok",
+    items: [
+      { name: "W0 Riz nature", price: "3,60€" },
+      { name: "W1 Boeuf & légumes", price: "11,90€" },
+      { name: "W2 Crevettes & légumes", price: "11,90€" },
+      { name: "W3 Poulet & légumes", price: "11,90€" },
+      { name: "W0 Légumes", price: "10,70€" },
+      { name: "W1 Riz cantonais crevettes", price: "11,90€" }
+    ]
+  },
+  {
+    category: "Nouilles",
+    items: [
+      { name: "N0 Nature", price: "3,60€" },
+      { name: "N1 Boeuf & légumes", price: "11,90€" },
+      { name: "N2 Crevettes & légumes", price: "11,90€" },
+      { name: "N3 Poulet & légumes", price: "11,90€" },
+      { name: "N4 Légumes", price: "10,70€" }
+    ]
+  }
+];
+
+const rolls = [
+  {
+    category: "Maki (6 pièces)",
+    items: [
+      { name: "M1 Concombre cheese", price: "4,70€" },
+      { name: "M2 Avocat cheese", price: "4,70€" },
+      { name: "M6 Thon mayo", price: "4,70€" },
+      { name: "M3 Saumon", price: "7,00€" },
+      { name: "M4 Tempura", price: "7,00€" },
+      { name: "M5 Tempura oignons frits", price: "7,00€" }
+    ]
+  },
+  {
+    category: "Snow (6 pièces)",
+    items: [
+      { name: "SN1 Poulet pané", price: "7,80€" },
+      { name: "SN2 Saumon cheese", price: "7,80€" },
+      { name: "SN3 Thon mayo", price: "7,00€" }
+    ]
+  },
+  {
+    category: "Dragon (6 pièces)",
+    items: [
+      { name: "AS1 Avocat saumon", price: "11,90€" },
+      { name: "AS2 Avocat tempura saumon", price: "11,90€" }
+    ]
+  },
+  {
+    category: "California (6 pièces)",
+    items: [
+      { name: "C1 Concombre cheese", price: "4,20€" },
+      { name: "C2 Avocat cheese", price: "5,40€" },
+      { name: "C4 Surimi cheese", price: "6,60€" },
+      { name: "C3 Poulet pané parmesan", price: "7,80€" },
+      { name: "C5 Tempura", price: "7,80€" },
+      { name: "C6 Thon concombre oignons frits", price: "7,80€" },
+      { name: "C7 Saumon avocat", price: "7,80€" },
+      { name: "C8 Saumon cheese ciboulette", price: "7,80€" },
+      { name: "C9 Saumon cheese menthe", price: "7,80€" },
+      { name: "C10 Thon mayo avocat", price: "7,80€" },
+      { name: "C11 Surimi avocat masago", price: "7,80€" }
+    ]
+  }
+];
+---
+
+<Layout title="Menu à emporter - Nippon Sushi">
+  
+  <!-- HEADER SECTION -->
+  <section class="pt-32 pb-16 bg-[#151623] text-center border-b border-[#cf2929] px-6">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-5xl font-bold text-white mb-6">Menu à emporter</h1>
+      
+      <div class="bg-[#cf2929]/10 border border-[#cf2929] rounded-lg p-6 md:p-8">
+        <h2 class="text-2xl md:text-3xl text-[#cf2929] font-bold mb-4 uppercase tracking-wide">1 acheté = 1 offert !</h2>
+        <p class="text-slate-300 text-lg mb-6">Pour tout achat à emporter, vous bénéficiez de notre offre spéciale.</p>
+        <a href="tel:0759399607" class="inline-block bg-[#cf2929] text-white px-8 py-3 font-bold uppercase tracking-widest rounded hover:bg-red-700 transition shadow-lg">
+          Commander au 07 59 39 96 07
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULES ACHETÉ = 1 OFFERT -->
+  <section class="py-20 px-6 max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold text-white mb-2">Formules</h2>
+      <h3 class="text-2xl text-[#cf2929] italic">1 Acheté = 1 Offert</h3>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-8">
+      {formulesAcheteOffert.map((formule) => (
+        <div class="bg-[#1F2030] p-6 rounded-lg border border-slate-700 shadow-lg">
+          <div class="flex justify-between items-start mb-4 border-b border-slate-800 pb-4">
+            <div>
+              <h4 class="text-xl font-bold text-white">{formule.name}</h4>
+              <span class="text-sm text-slate-400">{formule.items}</span>
+            </div>
+            <span class="text-xl font-bold text-[#cf2929]">{formule.price}</span>
+          </div>
+          <p class="text-slate-300 text-sm leading-relaxed">{formule.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- FORMULES CLASSIQUES -->
+  <section class="py-12 px-6 max-w-5xl mx-auto border-t border-slate-800">
+    <div class="grid md:grid-cols-2 gap-8">
+      {formulesClassiques.map((formule) => (
+        <div class="bg-[#2a2b3d] p-6 rounded-lg border border-slate-700 shadow-lg">
+          <div class="flex justify-between items-start mb-4 border-b border-slate-700 pb-4">
+            <div>
+              <h4 class="text-xl font-bold text-white">{formule.name}</h4>
+              <span class="text-sm text-slate-400">{formule.items}</span>
+            </div>
+            <span class="text-xl font-bold text-[#cf2929]">{formule.price}</span>
+          </div>
+          <p class="text-slate-300 text-sm leading-relaxed">{formule.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- PLATEAUX -->
+  <section class="py-20 px-6 bg-[#151623]">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-4xl font-bold text-center text-white mb-12">Nos Plateaux</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {plateaux.map((plateau) => (
+          <div class="bg-[#1F2030] p-5 rounded border border-slate-800 flex justify-between gap-4 group hover:border-[#cf2929] transition-colors">
+            <div>
+              <h4 class="text-white font-bold mb-1">{plateau.code} <span class="text-slate-400 font-normal">| {plateau.name}</span></h4>
+              <p class="text-slate-400 text-xs leading-relaxed">{plateau.desc}</p>
+            </div>
+            <div class="text-[#cf2929] font-bold whitespace-nowrap">{plateau.price}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- A LA CARTE (Variable quantities) -->
+  <section class="py-20 px-6 max-w-7xl mx-auto">
+    <h2 class="text-4xl font-bold text-center text-white mb-12">À la Carte</h2>
+    <div class="grid md:grid-cols-3 gap-8 mb-12">
+      {aLaCarte.map((category) => (
+        <div class="bg-[#2a2b3d] p-6 rounded-lg border border-slate-700">
+          <h4 class="text-2xl text-white mb-2 font-bold text-center">{category.category}</h4>
+          <p class="text-[#cf2929] text-sm font-bold text-center mb-1">{category.pricing}</p>
+          {category.note && <p class="text-slate-400 text-xs text-center italic mb-4">{category.note}</p>}
+          <div class="border-t border-slate-700 mt-4 pt-4">
+            <ul class="space-y-2">
+              {category.items.map((item) => (
+                <li class="text-slate-300 text-sm flex items-start gap-2">
+                  <span class="text-[#cf2929] mt-1">▸</span> {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- SPECIALITES (Fixed prices) -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {specialites.map((category) => (
+        <div class="bg-[#1F2030] p-6 rounded-lg border border-slate-800">
+          <h4 class="text-2xl text-white mb-4 border-b border-slate-800 pb-2 font-bold">{category.category}</h4>
+          {category.note && <p class="text-slate-400 text-xs italic mb-4">{category.note}</p>}
+          <ul class="space-y-4">
+            {category.items.map((item) => (
+              <li class="flex flex-col">
+                <div class="flex justify-between text-slate-200">
+                  <span class="font-medium">{item.name}</span>
+                  <span class="text-[#cf2929] font-bold">{item.price}</span>
+                </div>
+                {item.desc && <span class="text-slate-500 text-xs">{item.desc}</span>}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ROLLS (Maki, California, Snow, Dragon) -->
+  <section class="py-20 px-6 bg-[#151623]">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {rolls.map((category) => (
+          <div class="bg-[#1F2030] p-6 rounded-lg border border-slate-800">
+            <h4 class="text-2xl text-white mb-6 border-b border-slate-800 pb-2 font-bold">{category.category}</h4>
+            <ul class="space-y-3">
+              {category.items.map((item) => (
+                <li class="flex justify-between items-center text-slate-300 border-b border-slate-800/50 pb-2 last:border-0">
+                  <span class="text-sm pr-4">{item.name}</span>
+                  <span class="text-[#cf2929] font-bold whitespace-nowrap">{item.price}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      
+      <!-- BOISSONS -->
+      <div class="mt-12 text-center bg-[#2a2b3d] p-8 rounded-lg border border-slate-700">
+        <h4 class="text-2xl text-white font-bold mb-4">Boissons</h4>
+        <p class="text-slate-300">Coca-cola, Coca-cola zero, Fanta, Ice Tea, Orangina, Bière Asahi</p>
+      </div>
+    </div>
+  </section>
+
+</Layout>

@@ -1,23 +1,85 @@
+---
+import '../styles/global.css'; // Adjust the relative path to match your global.css location
+const { title } = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="fr" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Restaurant asiatique - JAPANESE Cuisines & Sushi Bar à Aubagne" />
+    <title>{title}</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Raleway:wght@400;500;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-[#1F2030] text-slate-100 font-['Raleway'] antialiased">
+    
+    <!-- REUSABLE NAVIGATION BAR -->
+    <nav class="fixed w-full z-50 bg-[#1F2030]/95 backdrop-blur-md border-b border-slate-800 p-4 transition-all">
+      <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <!-- Logo (Goes Home) -->
+        <a href="/" class="flex items-center gap-2">
+          <!-- TODO: Replace with your actual logo /images/logo.png -->
+          <div class="text-2xl font-bold tracking-widest uppercase text-white">
+            Nippon<span class="text-[#cf2929]">Sushi</span>
+          </div>
+        </a>
+
+        <!-- Desktop Links -->
+        <ul class="hidden lg:flex gap-8 text-sm uppercase tracking-wider font-medium text-slate-300">
+          <li><a href="/" class="hover:text-[#cf2929] transition-colors">Accueil</a></li>
+          <li><a href="/menu-emporter" class="hover:text-[#cf2929] transition-colors">Menu emporter</a></li>
+          <li><a href="/mentions-legales" class="hover:text-[#cf2929] transition-colors">Mentions légales</a></li>
+          <li><a href="/cg" class="hover:text-[#cf2929] transition-colors">CGU</a></li>
+          <li><a href="/cgv" class="hover:text-[#cf2929] transition-colors">CGV</a></li>
+        </ul>
+
+        <!-- CTA & Mobile -->
+        <div class="flex items-center gap-4">
+          <a href="tel:0760672927" class="hidden sm:inline-block bg-[#cf2929] text-white px-6 py-2 text-sm font-bold uppercase tracking-wider hover:bg-red-700 transition">
+            07 60 67 29 27
+          </a>
+          <button class="lg:hidden text-white text-2xl p-2">
+            &#9776; 
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- PAGE CONTENT INJECTED HERE -->
+    <main>
+      <slot />
+    </main>
+
+    <!-- REUSABLE FOOTER -->
+    <footer class="bg-[#151623] pt-16 pb-8 px-6 border-t border-[#cf2929]">
+      <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 text-center md:text-left mb-12">
+        <div>
+          <h3 class="text-2xl text-white font-bold mb-6 font-['EB_Garamond']">Contact & Réservation</h3>
+          <p class="text-slate-400 mb-2">Le Nippon Sushi, 13400 Aubagne, France</p>
+          <p class="text-slate-300 font-bold text-xl text-[#cf2929] mt-4">07 60 67 29 27</p>
+          <p class="text-slate-300 font-bold text-xl text-[#cf2929]">04 88 39 27 14</p>
+        </div>
+        <div>
+          <h3 class="text-2xl text-white font-bold mb-6 font-['EB_Garamond']">Horaires</h3>
+          <p class="text-slate-400">Lundi - Dimanche</p>
+          <p class="text-[#cf2929] font-bold">18:30 - 23:30</p>
+        </div>
+        <div>
+          <h3 class="text-2xl text-white font-bold mb-6 font-['EB_Garamond']">Nous trouver</h3>
+          <div class="w-full h-32 bg-slate-800 rounded-lg overflow-hidden border border-slate-700 shadow-lg">
+            <iframe src="https://maps.google.com/maps?q=nippon%20sushi%20aubagne&t=m&z=14&output=embed" width="100%" height="100%" style="border:0;" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="text-center text-slate-500 border-t border-slate-800 pt-8 text-sm">
+        <p>Copyright © 2024 Le Nippon Sushi. Réalisé avec Astro.</p>
+      </div>
+    </footer>
+
+  </body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+<style is:global>
+  h1, h2, h3, h4, h5, h6 { font-family: 'EB Garamond', serif; }
 </style>
