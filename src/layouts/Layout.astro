@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css'; // Adjust the relative path to match your global.css location
+import { Image } from 'astro:assets';
+import logoImage from '../assets/images/logo.png';
 const { title } = Astro.props;
 ---
 
@@ -36,8 +38,8 @@ const { title } = Astro.props;
 
         <!-- CTA & Mobile -->
         <div class="flex items-center gap-4">
-          <a href="tel:0760672927" class="hidden sm:inline-block bg-[#cf2929] text-white px-6 py-2 text-sm font-bold uppercase tracking-wider hover:bg-red-700 transition">
-            07 60 67 29 27
+          <a href="tel:0759399607" class="hidden sm:inline-block bg-[#cf2929] text-white px-6 py-2 text-sm font-bold uppercase tracking-wider hover:bg-red-700 transition">
+            07 59 39 96 07
           </a>
           <button class="lg:hidden text-white text-2xl p-2">
             &#9776; 
@@ -52,29 +54,152 @@ const { title } = Astro.props;
     </main>
 
     <!-- REUSABLE FOOTER -->
-    <footer class="bg-[#151623] pt-16 pb-8 px-6 border-t border-[#cf2929]">
-      <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 text-center md:text-left mb-12">
-        <div>
-          <h3 class="text-2xl text-white font-bold mb-6 font-['EB_Garamond']">Contact & Réservation</h3>
-          <p class="text-slate-400 mb-2">Le Nippon Sushi, 13400 Aubagne, France</p>
-          <p class="text-slate-300 font-bold text-xl text-[#cf2929] mt-4">07 60 67 29 27</p>
-          <p class="text-slate-300 font-bold text-xl text-[#cf2929]">04 88 39 27 14</p>
-        </div>
-        <div>
-          <h3 class="text-2xl text-white font-bold mb-6 font-['EB_Garamond']">Horaires</h3>
-          <p class="text-slate-400">Lundi - Dimanche</p>
-          <p class="text-[#cf2929] font-bold">18:30 - 23:30</p>
-        </div>
-        <div>
-          <h3 class="text-2xl text-white font-bold mb-6 font-['EB_Garamond']">Nous trouver</h3>
-          <div class="w-full h-32 bg-slate-800 rounded-lg overflow-hidden border border-slate-700 shadow-lg">
-            <iframe src="https://maps.google.com/maps?q=nippon%20sushi%20aubagne&t=m&z=14&output=embed" width="100%" height="100%" style="border:0;" loading="lazy"></iframe>
+    <footer class="bg-[#151623] text-white border-t-2 border-[#cf2929]">
+
+      <div class="max-w-7xl mx-auto px-5 md:px-8 py-14 md:py-16">
+    
+        <!-- TOP -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-16">
+    
+          <!-- BRAND -->
+          <div class="md:col-span-4">
+
+            <!-- LOGO -->
+            <a href="/" class="inline-block mb-6">
+              <Image
+                src={logoImage}
+                alt="Nippon Sushi"
+                class="w-48 md:w-56 h-auto object-contain"
+              />
+            </a>
+
+            <p class="text-[#cf2929] text-xs font-bold uppercase tracking-[0.3em] mb-3">
+              Restaurant Japonais
+            </p>
+
+            <h2 class="font-serif text-3xl md:text-4xl font-normal leading-tight mb-5">
+              Cuisine japonaise
+              <br />
+              <span class="text-slate-400">& Sushi Bar</span>
+            </h2>
+
+            <p class="text-slate-400 text-sm leading-relaxed max-w-sm mb-7">
+              Découvrez notre cuisine japonaise préparée avec des produits frais,
+              à déguster sur place ou à emporter à Aubagne.
+            </p>
+
+            <a
+              href="tel:0759399607"
+              class="inline-flex items-center gap-3 text-xl font-bold text-white hover:text-[#cf2929] transition-colors"
+            >
+              <span class="text-[#cf2929]">T.</span>
+              07 59 39 96 07
+            </a>
+
           </div>
+
+          <!-- HOURS / ADDRESS -->
+          <div class="md:col-span-3">
+    
+            <h3 class="font-serif text-2xl text-white mb-6">
+              Informations
+            </h3>
+    
+            <div class="space-y-6">
+    
+              <!-- ADDRESS -->
+              <div>
+                <p class="text-xs uppercase tracking-[0.2em] text-[#cf2929] font-bold mb-2">
+                  Adresse
+                </p>
+    
+                <p class="text-slate-300 text-sm leading-relaxed">
+                  40 Av. des Goums
+                  <br />
+                  13400 Aubagne, France
+                </p>
+              </div>
+    
+    
+              <!-- HOURS -->
+              <div>
+                <p class="text-xs uppercase tracking-[0.2em] text-[#cf2929] font-bold mb-2">
+                  Horaires
+                </p>
+    
+                <p class="text-white font-semibold">
+                  Tous les jours
+                </p>
+    
+                <p class="text-slate-400 text-sm mt-1">
+                  18:30 — 23:30
+                </p>
+              </div>
+    
+            </div>
+    
+          </div>
+    
+    
+          <!-- MAP -->
+          <div class="md:col-span-5">
+    
+            <div class="flex items-center justify-between mb-5">
+    
+              <h3 class="font-serif text-2xl text-white">
+                Nous trouver
+              </h3>
+    
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Nippon+Sushi+Aubagne"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-xs uppercase tracking-wider text-[#cf2929] hover:text-white transition-colors"
+              >
+                Itinéraire →
+              </a>
+    
+            </div>
+    
+            <div class="h-72 md:h-80 lg:h-96 bg-slate-800 rounded-xl overflow-hidden border border-slate-700 shadow-2xl">
+              <iframe
+                src="https://maps.google.com/maps?q=nippon%20sushi%20aubagne&t=m&z=14&output=embed"
+                width="100%"
+                height="100%"
+                style="border:0;"
+                loading="lazy"
+                title="Google Map Nippon Sushi Aubagne"
+              ></iframe>
+            </div>
+    
+          </div>
+    
         </div>
+    
+    
+        <!-- BOTTOM -->
+        <div class="mt-14 pt-7 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4">
+    
+          <p class="text-xs text-slate-500 text-center md:text-left">
+            © 2026 Le Nippon Sushi. Tous droits réservés.
+          </p>
+    
+          <p class="text-xs text-slate-500">
+            Site réalisé par
+            <a
+              href="https://societe-kali.fr/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-slate-300 hover:text-[#cf2929] transition-colors font-medium"
+            >
+              KALI
+            </a>
+          </p>
+    
+        </div>
+    
       </div>
-      <div class="text-center text-slate-500 border-t border-slate-800 pt-8 text-sm">
-        <p>Copyright © 2024 Le Nippon Sushi. Réalisé avec Astro.</p>
-      </div>
+    
     </footer>
 
   </body>
