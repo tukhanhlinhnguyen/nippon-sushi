@@ -15,13 +15,47 @@ import caliImage from '../assets/images/IMG_5156.JPG';
 import supImage from '../assets/images/IMG_3201.JPG';
 import pla1Image from '../assets/images/IMG_4215.JPG';
 import pla2Image from '../assets/images/IMG_5134.JPG';
-import ct1Image from '../assets/images/IMG_0224.JPG';
-import ct2Image from '../assets/images/IMG_0225.JPG';
-const instaURL = "https://www.instagram.com/lenipponsushis_aubagne/"
+import cocktail0216 from "../assets/images/IMG_0216.JPG";
+import cocktail0218 from "../assets/images/IMG_0218.JPG";
+import cocktail0219 from "../assets/images/IMG_0219.JPG";
+import cocktail0220 from "../assets/images/IMG_0220.JPG";
+import cocktailDSCF9951 from "../assets/images/DSCF9951.JPG";
+import cocktail0222 from "../assets/images/IMG_0222.JPG";
+import cocktail0223 from "../assets/images/IMG_0223.JPG";
+import cocktail0224 from "../assets/images/IMG_0224.JPG";
+import cocktail0225 from "../assets/images/IMG_0225.JPG";
+import cocktail0226 from "../assets/images/IMG_0226.JPG";
+import cocktail0227 from "../assets/images/IMG_0227.JPG";
+import cocktail0228 from "../assets/images/IMG_0228.JPG";
+import cocktail0230 from "../assets/images/IMG_0230.JPG";
+import cocktail0451 from "../assets/images/IMG_0451.JPG";
 
-// Replace this URL with your own restaurant photo.
-// Example: "/images/sushi-hero.jpg"
-const placeholderImage = "/assets/photo/IMG_5152.JPG";
+const cocktailPhotos = [
+  cocktail0216,
+  cocktail0451,
+  cocktail0220,
+  cocktail0222,
+  cocktail0226,
+  cocktail0227,
+  cocktail0228,
+  cocktail0230
+];
+
+const cocktailLayouts = [
+  "aspect-[4/5]",
+  "aspect-[4/3]",
+  "aspect-square",
+  "aspect-[3/5]",
+  "aspect-[4/5]",
+  "aspect-[3/5]",
+  "aspect-[4/5]",
+  "aspect-[3/5]",
+  "aspect-[4/5]"
+];
+
+const instaURL = "https://www.instagram.com/lenipponsushis_aubagne/"
+const menuPDFURL = "https://societe-kali.fr/wp-content/uploads/2025/07/lenipponsushis-carte-bd.pdf"
+
 
 const menuCategories = [
   {
@@ -222,16 +256,20 @@ const plateaux = [
         Japanese Cuisines <br class="hidden sm:inline"/>& Sushi Bar
       </h1>
       <p class="text-sm md:text-base text-stone-500 mb-12 leading-relaxed max-w-lg mx-auto font-light">
-        Bienvenue chez Nippon Sushi Aubagne, votre destination incontournable pour savourer le meilleur de la cuisine japonaise. Situé au cœur d’Aubagne, notre restaurant vous propose une expérience culinaire authentique, avec des plats préparés à base d’ingrédients frais et de haute qualité.      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center text-xs tracking-widest uppercase font-bold">
-        <a href="#menu" class="border border-stone-900 bg-stone-900 text-white px-8 py-4 w-64 hover:bg-[#cf2929] hover:border-[#cf2929] transition duration-300">
+        Bienvenue chez Nippon Sushi Aubagne, votre destination incontournable pour savourer le meilleur de la cuisine japonaise. Situé au cœur d’Aubagne, notre restaurant vous propose une expérience culinaire authentique, avec des plats préparés à base d’ingrédients frais et de haute qualité.
+      </p>
+      <div class="grid grid-cols-2 gap-4 max-w-xl mx-auto justify-items-center text-xs tracking-widest uppercase font-bold">
+        <a href="#menu" class="border border-stone-900 bg-stone-900 text-white px-8 py-4 w-full hover:bg-[#cf2929] hover:border-[#cf2929] transition duration-300">
           Voir le menu buffet
         </a>
-        <a href="/menu-emporter" class="border border-stone-300 text-stone-700 px-8 py-4 w-64 hover:bg-stone-50 hover:text-stone-900 transition duration-300">
+        <a href="/menu-emporter" class="border border-stone-300 text-stone-700 px-8 py-4 w-full hover:bg-stone-50 hover:text-stone-900 transition duration-300">
           Voir le menu à emporter
         </a>
-        <a target="_blank" href={instaURL} class="border border-stone-300 text-stone-700 px-8 py-4 w-64 hover:bg-stone-50 hover:text-stone-900 transition duration-300">
+        <a target="_blank" href={instaURL} class="border border-stone-300 text-stone-700 px-8 py-4 w-full hover:bg-stone-50 hover:text-stone-900 transition duration-300">
           Voir sur Instagram
+        </a>
+        <a target="_blank" href={menuPDFURL} class="border border-stone-300 text-stone-700 px-8 py-4 w-full hover:bg-stone-50 hover:text-stone-900 transition duration-300">
+          La carte en version PDF
         </a>
       </div>
       </div>
@@ -285,7 +323,7 @@ const plateaux = [
       <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
         {menuCategories.map((category) => (
           <div class="break-inside-avoid">
-            <div class="mb-4 aspect-[16/7] overflow-hidden rounded-lg bg-stone-100">
+            <div class="mb-4 aspect-[16/9] overflow-hidden rounded-lg bg-stone-100">
               <Image
                 src={category.photo.src}
                 alt={category.photo.alt}
@@ -299,7 +337,7 @@ const plateaux = [
             <ul class="space-y-3">
               {category.items.map((item) => {
                 // Sépare le code (ex: H1, SA3) du reste du texte pour le styliser en rouge
-				const firstSpaceIndex = item.indexOf(' ');
+				        const firstSpaceIndex = item.indexOf(' ');
                 const code = firstSpaceIndex !== -1 ? item.substring(0, firstSpaceIndex) : '';
                 const name = firstSpaceIndex !== -1 ? item.substring(firstSpaceIndex + 1) : item;
                 
@@ -318,8 +356,8 @@ const plateaux = [
   </section>
 
   <!-- SECTION : LES PLATEAUX -->
-  <section id="plateaux" class="py-24 px-6 bg-[#fafafa] border-t border-stone-100 text-stone-900">
-    <div class="max-w-4xl mx-auto">
+  <section id="plateaux" class="py-24 px-2 bg-[#fafafa] border-t border-stone-100 text-stone-900">
+    <div class="max-w-7xl mx-auto">
       <div class="mb-4 grid grid-cols-2 aspect-[16/7] overflow-hidden rounded-lg bg-stone-100">
         <Image
           src={pla1Image}
@@ -367,20 +405,29 @@ const plateaux = [
   </section>
 
   <!-- SECTION : LES COCKTAILS -->
-  <section id="cocktail" class="py-24 px-6 bg-[#fafafa] border-t border-stone-100 text-stone-900">
-    <div class="mb-4 grid grid-cols-2 aspect-[16/7] overflow-hidden rounded-lg bg-stone-100">
-      <Image
-        src={ct1Image}
-        alt={"Cocktails"}
-        loading="lazy"
-        class="w-full h-full object-cover"
-      />
-      <Image
-        src={ct2Image}
-        alt={"Cocktails"}
-        loading="lazy"
-        class="w-full h-full object-cover"
-      />
+  <section id="cocktail" class="px-6 bg-[#fafafa] border border-stone-100 text-stone-900">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="font-serif text-3xl md:text-4xl font-normal tracking-wide text-stone-900 mb-2">Nos Cocktails</h2>
+        <p class="text-xs uppercase tracking-widest text-stone-400">Parce que de simples sushis ne font pas toute une soirée.   </p>
+      </div>
+      <div class="columns-3 md:columns-3 lg:columns-4 gap-3 md:gap-4">
+        {cocktailPhotos.map((photo, index) => (
+          <div
+            class:list={[
+              "mb-3 md:mb-4 break-inside-avoid overflow-hidden",
+              cocktailLayouts[index]
+            ]}
+          >
+            <Image
+              src={photo}
+              alt="Cocktail"
+              loading="lazy"
+              class="w-full h-auto object-cover transition-transform duration-500 hover:scale-105 rounded-xl"
+            />
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
