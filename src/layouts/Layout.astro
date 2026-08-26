@@ -1,7 +1,9 @@
 ---
 import '../styles/global.css'; // Adjust the relative path to match your global.css location
 import { Image } from 'astro:assets';
-import logoImage from '../assets/images/logo.png';
+import logoNavImage from '../assets/images/logo.png';
+import logoFootImage from '../assets/images/logo.png';
+import favicon from "../assets/images/logo.png";
 const { title } = Astro.props;
 ---
 
@@ -12,19 +14,21 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Restaurant asiatique - JAPANESE Cuisines & Sushi Bar à Aubagne" />
     <title>{title}</title>
+    <link rel="icon" type="image/png" href={favicon.src} />
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Raleway:wght@400;500;700&display=swap" rel="stylesheet">
   </head>
   <body class="bg-[#1F2030] text-slate-100 font-['Raleway'] antialiased">
     
     <!-- REUSABLE NAVIGATION BAR -->
-    <nav class="fixed w-full z-50 bg-[#1F2030]/95 backdrop-blur-md border-b border-slate-800 p-4 transition-all">
+    <nav class="fixed w-full z-50 bg-[#1F2030]/95 backdrop-blur-md border-b border-slate-800 p-1 transition-all">
       <div class="max-w-7xl mx-auto flex justify-between items-center">
         <!-- Logo (Goes Home) -->
-        <a href="/" class="flex items-center gap-2">
-          <!-- TODO: Replace with your actual logo /images/logo.png -->
-          <div class="text-2xl font-bold tracking-widest uppercase text-white">
-            Nippon<span class="text-[#cf2929]">Sushi</span>
-          </div>
+        <a href="/" class="inline-block">
+          <Image
+            src={logoNavImage}
+            alt="Nippon Sushi"
+            class="w-auto h-10 object-contain"
+            />
         </a>
 
         <!-- Desktop Links -->
@@ -67,7 +71,7 @@ const { title } = Astro.props;
             <!-- LOGO -->
             <a href="/" class="inline-block mb-6">
               <Image
-                src={logoImage}
+                src={logoFootImage}
                 alt="Nippon Sushi"
                 class="w-48 md:w-56 h-auto object-contain"
               />
